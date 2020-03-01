@@ -25,6 +25,17 @@ public class NavigationActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
+        Tag tag = new Tag(
+                "High Proirity",
+                R.color.colorAccent
+        );
+
+        Task task = new Task(
+                "Get Groceries"
+        );
+
+        String s = task.getTitle();
     }
 
 }
