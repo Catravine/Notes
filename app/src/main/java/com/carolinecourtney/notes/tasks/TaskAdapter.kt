@@ -6,26 +6,29 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.carolinecourtney.notes.R
 import com.carolinecourtney.notes.foundations.BaseRecyclerAdapter
-import kotlinx.android.synthetic.main.item_task.view.*
 import com.carolinecourtney.notes.models.Task
 import com.carolinecourtney.notes.views.TaskView
-import com.carolinecourtney.notes.views.TodoView
+import kotlinx.android.synthetic.main.view_add_button.view.*
 
 class TaskAdapter(
     taskList: MutableList<Task> = mutableListOf()
 ) : BaseRecyclerAdapter<Task>(taskList) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
-        ViewHolder(
-            LayoutInflater.from(
-                parent.context
-            ).inflate(R.layout.item_task, parent, false)
-        )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = if (viewType == TYPE_INFO) {
+        TaskViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
+    } else {
+        AddButtonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false))
+    }
 
-    class ViewHolder(view: View): BaseViewHolder<Task>(view) {
-
+    class TaskViewHolder(view: View): BaseViewHolder<Task>(view) {
         override fun onBind(data: Task) {
             (view as TaskView).initView(data)
+        }
+    }
+
+    class AddButtonViewHolder(view: View): BaseRecyclerAdapter.AddButtonViewHolder(view) {
+        override fun onBind(data: Unit) {
+            view.button_text.text = view.context.getString(R.string.add_button_task)
         }
     }
 }
