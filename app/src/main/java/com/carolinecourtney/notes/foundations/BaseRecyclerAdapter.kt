@@ -1,4 +1,4 @@
-package foundations
+package com.carolinecourtney.notes.foundations
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

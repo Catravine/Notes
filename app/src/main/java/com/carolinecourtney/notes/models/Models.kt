@@ -1,4 +1,4 @@
-package models
+package com.carolinecourtney.notes.models
 
 data class Task @JvmOverloads constructor(
     var title: String,
