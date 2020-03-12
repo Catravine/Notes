@@ -1,5 +1,6 @@
 package com.carolinecourtney.notes.notes
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,18 @@ import kotlinx.android.synthetic.main.fragment_notes_list.*
 import com.carolinecourtney.notes.models.Note
 
 class NotesListFragment : Fragment() {
+
+    lateinit var touchActionDelegate: NotesListFragment.TouchActionDelegate
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        context?.let {
+            if (it is NotesListFragment.TouchActionDelegate) {
+                touchActionDelegate = it
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -29,7 +42,8 @@ class NotesListFragment : Fragment() {
             mutableListOf(
                 Note("Note Test One"),
                 Note("Note Test Two")
-            )
+            ),
+            touchActionDelegate
         )
         notes_recycler_view.adapter = adapter
     }
@@ -37,4 +51,9 @@ class NotesListFragment : Fragment() {
     companion object {
         fun newInstance() = NotesListFragment()
     }
+
+    interface TouchActionDelegate {
+        fun onAddButtonClicked(value: String)
+    }
+
 }

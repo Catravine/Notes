@@ -2,7 +2,6 @@ package com.carolinecourtney.notes.foundations
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.carolinecourtney.notes.tasks.TaskAdapter
 
 abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()

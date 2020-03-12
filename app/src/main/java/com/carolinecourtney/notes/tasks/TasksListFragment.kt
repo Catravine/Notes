@@ -1,5 +1,6 @@
 package com.carolinecourtney.notes.tasks
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,18 @@ import com.carolinecourtney.notes.models.Task
 import com.carolinecourtney.notes.models.Todo
 
 class TasksListFragment : Fragment() {
+
+    lateinit var touchActionDelegate: TouchActionDelegate
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        context?.let {
+            if (it is TouchActionDelegate) {
+                touchActionDelegate = it
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -35,7 +48,8 @@ class TasksListFragment : Fragment() {
                     )
                 ),
                 Task("Testing Two")
-            )
+            ),
+            touchActionDelegate
         )
         tasks_recycler_view.adapter = adapter
     }
@@ -43,4 +57,9 @@ class TasksListFragment : Fragment() {
     companion object {
         fun newInstance() = TasksListFragment()
     }
+
+    interface TouchActionDelegate {
+        fun onAddButtonClicked(value: String)
+    }
+
 }
