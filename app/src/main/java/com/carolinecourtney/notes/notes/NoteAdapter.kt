@@ -13,7 +13,8 @@ import kotlinx.android.synthetic.main.view_add_button.view.*
 
 class NoteAdapter(
     noteList: MutableList<Note> = mutableListOf(),
-    val touchActionDelegate: NotesListFragment.TouchActionDelegate
+    val touchActionDelegate: NotesListFragment.TouchActionDelegate,
+    val dataActionDelegate: NoteListViewContract
 ) : BaseRecyclerAdapter<Note>(noteList) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = if (viewType == TYPE_INFO) {

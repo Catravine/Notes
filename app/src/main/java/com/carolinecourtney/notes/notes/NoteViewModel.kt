@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.carolinecourtney.notes.models.Note
 
-class NoteViewModel: ViewModel() {
+class NoteViewModel: ViewModel(), NoteListViewContract {
 
-    private val _notesListLiveData: MutableLiveData<MutableList<Note>> = MutableLiveData()
-    val notesListLiveData: LiveData<MutableList<Note>> = _notesListLiveData
+    private val _noteListLiveData: MutableLiveData<MutableList<Note>> = MutableLiveData()
+    val noteListLiveData: LiveData<MutableList<Note>> = _noteListLiveData
 
     init {
-        _notesListLiveData.postValue(getFakedata())
+        _noteListLiveData.postValue(getFakedata())
     }
 
     fun getFakedata(): MutableList<Note> = mutableListOf(
