@@ -18,7 +18,7 @@ class NoteListFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        context?.let {
+        context.let {
             if (it is TouchActionDelegate) {
                 touchActionDelegate = it
             }

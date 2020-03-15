@@ -1,16 +1,18 @@
 package com.carolinecourtney.notes.foundations
 
 import android.view.View
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseRecyclerAdapter<T>(
+abstract class BaseRecyclerAdapter<T : Any>(
     protected val masterList: MutableList<T> = mutableListOf()
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun updateList(list: List<T>) {
+        val result = DiffUtil.calculateDiff(DiffUtilCallbackImpl(masterList, list))
         masterList.clear()
         masterList.addAll(list)
-        notifyDataSetChanged()
+        result.dispatchUpdatesTo(this)
     }
 
     override fun getItemViewType(position: Int): Int = if (position == 0) {
@@ -36,8 +38,22 @@ abstract class BaseRecyclerAdapter<T>(
     abstract class AddButtonViewHolder(view: View) : BaseViewHolder<Unit>(view)
 
     companion object {
+
         const val TYPE_ADD_BUTTON = 0
         const val TYPE_INFO = 1
+
+    }
+
+    class DiffUtilCallbackImpl<T>(val oldList: List<T>, val newList: List<T>) : DiffUtil.Callback() {
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            oldList[oldItemPosition] == newList[newItemPosition]
+
+        override fun getOldListSize(): Int = oldList.size
+
+        override fun getNewListSize(): Int = newList.size
+
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+            oldList[oldItemPosition] == newList[newItemPosition]
     }
 
 }
