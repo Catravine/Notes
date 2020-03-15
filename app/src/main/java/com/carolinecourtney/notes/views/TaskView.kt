@@ -1,7 +1,6 @@
 package com.carolinecourtney.notes.views
 
 import android.content.Context
-import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -28,9 +27,9 @@ class TaskView @JvmOverloads constructor(
                     todoCheckedCallback.invoke(todoIndex, isChecked)
 
                     if (isTaskComplete()) {
-                        createStrikeThrough()
+                        this@TaskView.title_view.setStrikeThrough()
                     } else {
-                        removeStrikeThrough()
+                        this@TaskView.title_view.removeStrikeThrough()
                     }
                 }
             }
@@ -39,16 +38,4 @@ class TaskView @JvmOverloads constructor(
     }
 
     private fun isTaskComplete(): Boolean = task.todos.filter { !it.isComplete }.isEmpty()
-
-    private fun createStrikeThrough() {
-        title_view.apply {
-            paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        }
-    }
-
-    private fun removeStrikeThrough() {
-        title_view.apply {
-            paintFlags = paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-        }
-    }
 }
