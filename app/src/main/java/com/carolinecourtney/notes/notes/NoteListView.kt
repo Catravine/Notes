@@ -14,15 +14,15 @@ class NoteListView @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private lateinit var adapter: NoteAdapter
-    private lateinit var touchActionDelegate: NotesListFragment.TouchActionDelegate
+    private lateinit var touchActionDelegate: NoteListFragment.TouchActionDelegate
     private lateinit var dataActionDelegate: NoteListViewContract
 
-    fun initView(taDelegate: NotesListFragment.TouchActionDelegate, daDelegate: NoteListViewContract) {
+    fun initView(taDelegate: NoteListFragment.TouchActionDelegate, daDelegate: NoteListViewContract) {
         setUpDelegates(taDelegate, daDelegate)
         setupView()
     }
 
-    private fun setUpDelegates(taDelegate: NotesListFragment.TouchActionDelegate, daDelegate: NoteListViewContract) {
+    private fun setUpDelegates(taDelegate: NoteListFragment.TouchActionDelegate, daDelegate: NoteListViewContract) {
         touchActionDelegate = taDelegate
         dataActionDelegate = daDelegate
     }

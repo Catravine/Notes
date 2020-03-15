@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.view_add_button.view.*
 
 class NoteAdapter(
     noteList: MutableList<Note> = mutableListOf(),
-    val touchActionDelegate: NotesListFragment.TouchActionDelegate,
+    val touchActionDelegate: NoteListFragment.TouchActionDelegate,
     val dataActionDelegate: NoteListViewContract
 ) : BaseRecyclerAdapter<Note>(noteList) {
 

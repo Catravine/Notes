@@ -6,17 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.carolinecourtney.notes.R
 import com.carolinecourtney.notes.create.CreateActivity
-import com.carolinecourtney.notes.notes.NotesListFragment
+import com.carolinecourtney.notes.notes.NoteListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_navigation.*
 import com.carolinecourtney.notes.tasks.TasksListFragment
 
-class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDelegate, NotesListFragment.TouchActionDelegate {
+class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDelegate, NoteListFragment.TouchActionDelegate {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_notes -> {
-                replaceFragment(NotesListFragment.newInstance())
+                replaceFragment(NoteListFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_tasks -> {

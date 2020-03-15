@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.carolinecourtney.notes.R
 
 class TasksListFragment : Fragment() {
@@ -16,7 +16,7 @@ class TasksListFragment : Fragment() {
     lateinit var contentView: TaskListView
     lateinit var touchActionDelegate: TouchActionDelegate
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         context?.let {
             if (it is TouchActionDelegate) {
@@ -45,7 +45,7 @@ class TasksListFragment : Fragment() {
     }
 
     private fun bindViewModel() {
-        viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(TaskViewModel::class.java)
         viewModel.taskListLiveData.observe(this, Observer { taskList ->
             contentView.updateList(taskList)
         })

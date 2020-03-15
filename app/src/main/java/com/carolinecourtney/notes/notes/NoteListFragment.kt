@@ -7,16 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.carolinecourtney.notes.R
 
-class NotesListFragment : Fragment() {
+class NoteListFragment : Fragment() {
 
     lateinit var viewModel: NoteViewModel
     lateinit var contentView: NoteListView
     lateinit var touchActionDelegate: TouchActionDelegate
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         context?.let {
             if (it is TouchActionDelegate) {
@@ -45,14 +45,14 @@ class NotesListFragment : Fragment() {
     }
 
     private fun bindViewModel() {
-        viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
-        viewModel.noteListLiveData.observe(this, Observer { noteList ->
+        viewModel = ViewModelProvider(this).get(NoteViewModel::class.java) // new way
+        viewModel.noteListLiveData.observe(viewLifecycleOwner, Observer { noteList ->
             contentView.updateList(noteList)
         })
     }
 
     companion object {
-        fun newInstance() = NotesListFragment()
+        fun newInstance() = NoteListFragment()
     }
 
     interface TouchActionDelegate {
