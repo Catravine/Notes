@@ -18,11 +18,11 @@ class TaskListView @JvmOverloads constructor(
     private lateinit var dataActionDelegate: TaskListViewContract
 
    fun initView(taDelegate: TasksListFragment.TouchActionDelegate, daDelegate: TaskListViewContract) {
-        setDelegates(taDelegate, daDelegate)
+       setUpDelegates(taDelegate, daDelegate)
         setupView()
     }
 
-    private fun setDelegates(taDelegate: TasksListFragment.TouchActionDelegate, daDelegate: TaskListViewContract) {
+    private fun setUpDelegates(taDelegate: TasksListFragment.TouchActionDelegate, daDelegate: TaskListViewContract) {
         touchActionDelegate = taDelegate
         dataActionDelegate = daDelegate
     }

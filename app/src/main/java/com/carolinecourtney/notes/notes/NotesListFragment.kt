@@ -29,7 +29,7 @@ class NotesListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_tasks_list, container, false).apply {
+        return inflater.inflate(R.layout.fragment_notes_list, container, false).apply {
             contentView = this as NoteListView
         }
     }
