@@ -17,20 +17,25 @@ class NoteAdapter(
     val dataActionDelegate: NoteListViewContract
 ) : BaseRecyclerAdapter<Note>(noteList) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = if (viewType == TYPE_INFO) {
-        NoteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false))
-    } else {
-        AddButtonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        if (viewType == TYPE_INFO) {
+            NoteViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
+            )
+        } else {
+            AddButtonViewHolder(
+                LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false)
+            )
+        }
 
-    class NoteViewHolder(view: View): BaseViewHolder<Note>(view) {
+    class NoteViewHolder(view: View) : BaseViewHolder<Note>(view) {
 
         override fun onBind(data: Note, listIndex: Int) {
             (view as NoteView).initView(data)
         }
     }
 
-    inner class AddButtonViewHolder(view: View): BaseRecyclerAdapter.AddButtonViewHolder(view) {
+    inner class AddButtonViewHolder(view: View) : BaseRecyclerAdapter.AddButtonViewHolder(view) {
         override fun onBind(data: Unit, listIndex: Int) {
             view.button_text.text = view.context.getString(R.string.add_button_note)
             view.setOnClickListener { touchActionDelegate.onAddButtonClicked(NavigationActivity.FRAGMENT_VALUE_NOTE) }

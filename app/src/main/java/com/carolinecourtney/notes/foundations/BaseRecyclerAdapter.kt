@@ -29,11 +29,11 @@ abstract class BaseRecyclerAdapter<T>(
         }
     }
 
-    abstract class BaseViewHolder<E>(val view: View): RecyclerView.ViewHolder(view) {
+    abstract class BaseViewHolder<E>(val view: View) : RecyclerView.ViewHolder(view) {
         abstract fun onBind(data: E, listIndex: Int)
     }
 
-    abstract class AddButtonViewHolder(view: View): BaseViewHolder<Unit>(view)
+    abstract class AddButtonViewHolder(view: View) : BaseViewHolder<Unit>(view)
 
     companion object {
         const val TYPE_ADD_BUTTON = 0

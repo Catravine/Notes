@@ -20,7 +20,7 @@ class TodoView @JvmOverloads constructor(
         setUpCheckStateListener(todo, callback)
     }
 
-    fun setUpCheckStateListener(todo: Todo, callback: ((Boolean) -> Unit)? = null) {
+    private fun setUpCheckStateListener(todo: Todo, callback: ((Boolean) -> Unit)? = null) {
         complete_checkbox.setOnCheckedChangeListener { _, isChecked ->
             todo.isComplete = isChecked
 

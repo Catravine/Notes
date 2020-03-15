@@ -9,20 +9,26 @@ import kotlinx.android.synthetic.main.fragment_tasks_list.view.*
 
 class TaskListView @JvmOverloads constructor(
     context: Context,
-     attrs: AttributeSet? = null,
-     defStyleAttr: Int = 1
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 1
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private lateinit var adapter: TaskAdapter
     private lateinit var touchActionDelegate: TasksListFragment.TouchActionDelegate
     private lateinit var dataActionDelegate: TaskListViewContract
 
-   fun initView(taDelegate: TasksListFragment.TouchActionDelegate, daDelegate: TaskListViewContract) {
-       setUpDelegates(taDelegate, daDelegate)
+    fun initView(
+        taDelegate: TasksListFragment.TouchActionDelegate,
+        daDelegate: TaskListViewContract
+    ) {
+        setUpDelegates(taDelegate, daDelegate)
         setupView()
     }
 
-    private fun setUpDelegates(taDelegate: TasksListFragment.TouchActionDelegate, daDelegate: TaskListViewContract) {
+    private fun setUpDelegates(
+        taDelegate: TasksListFragment.TouchActionDelegate,
+        daDelegate: TaskListViewContract
+    ) {
         touchActionDelegate = taDelegate
         dataActionDelegate = daDelegate
     }

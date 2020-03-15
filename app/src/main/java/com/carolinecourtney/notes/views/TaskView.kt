@@ -20,8 +20,9 @@ class TaskView @JvmOverloads constructor(
     fun initView(task: Task, todoCheckedCallback: (Int, Boolean) -> Unit) {
         this.task = task
         title_view.text = task.title
-        task.todos.forEachIndexed {todoIndex, todo ->
-            val todoView = (LayoutInflater.from(context).inflate(R.layout.view_todo, todo_container, false) as TodoView).apply {
+        task.todos.forEachIndexed { todoIndex, todo ->
+            val todoView = (LayoutInflater.from(context)
+                .inflate(R.layout.view_todo, todo_container, false) as TodoView).apply {
                 initView(todo) { isChecked ->
 
                     todoCheckedCallback.invoke(todoIndex, isChecked)
@@ -37,7 +38,7 @@ class TaskView @JvmOverloads constructor(
         }
     }
 
-    fun isTaskComplete(): Boolean = task.todos.filter { !it.isComplete }.isEmpty()
+    private fun isTaskComplete(): Boolean = task.todos.filter { !it.isComplete }.isEmpty()
 
     private fun createStrikeThrough() {
         title_view.apply {
