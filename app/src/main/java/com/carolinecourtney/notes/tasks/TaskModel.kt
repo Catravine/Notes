@@ -2,9 +2,9 @@ package com.carolinecourtney.notes.tasks
 
 import com.carolinecourtney.notes.models.Task
 import com.carolinecourtney.notes.models.Todo
+import javax.inject.Inject
 
-class TaskModel {
-
+class TaskModel @Inject constructor() {
 
     fun getFakeData(): MutableList<Task> = mutableListOf(
         Task(
