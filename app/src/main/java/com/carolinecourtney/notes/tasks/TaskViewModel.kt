@@ -3,6 +3,7 @@ package com.carolinecourtney.notes.tasks
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.carolinecourtney.notes.foundations.ApplicationScope
 import com.carolinecourtney.notes.models.Task
 import toothpick.Toothpick
 import javax.inject.Inject
@@ -10,14 +11,13 @@ import javax.inject.Inject
 class TaskViewModel : ViewModel(), TaskListViewContract {
 
     @Inject
-    lateinit var model: TaskModel
+    lateinit var model: ITaskModel
 
     private val _taskListLiveData: MutableLiveData<MutableList<Task>> = MutableLiveData()
     val taskListLiveData: LiveData<MutableList<Task>> = _taskListLiveData
 
     init {
-        val scope = Toothpick.openScope(this)
-        Toothpick.inject(this, scope)
+        Toothpick.inject(this, ApplicationScope.scope)
         _taskListLiveData.postValue(model.getFakeData())
     }
 

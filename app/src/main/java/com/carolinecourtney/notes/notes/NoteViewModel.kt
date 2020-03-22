@@ -3,6 +3,7 @@ package com.carolinecourtney.notes.notes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.carolinecourtney.notes.foundations.ApplicationScope
 import com.carolinecourtney.notes.models.Note
 import toothpick.Toothpick
 import javax.inject.Inject
@@ -10,14 +11,13 @@ import javax.inject.Inject
 class NoteViewModel : ViewModel(), NoteListViewContract {
 
     @Inject
-    lateinit var model: NoteModel
+    lateinit var model: INoteModel
 
     private val _noteListLiveData: MutableLiveData<MutableList<Note>> = MutableLiveData()
     val noteListLiveData: LiveData<MutableList<Note>> = _noteListLiveData
 
     init {
-        val scope = Toothpick.openScope(this)
-        Toothpick.inject(this, scope)
+        Toothpick.inject(this, ApplicationScope.scope)
         _noteListLiveData.postValue(model.getFakedata())
     }
 
