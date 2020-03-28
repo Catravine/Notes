@@ -12,7 +12,7 @@ import com.carolinecourtney.notes.foundations.NullFieldChecker
 import com.carolinecourtney.notes.foundations.StateChangeTextWatcher
 import com.carolinecourtney.notes.models.Task
 import com.carolinecourtney.notes.models.Todo
-import com.carolinecourtney.notes.tasks.TaskLocalModel
+import com.carolinecourtney.notes.tasks.ITaskModel
 import com.carolinecourtney.notes.views.CreateTodoView
 import kotlinx.android.synthetic.main.fragment_create_task.*
 import kotlinx.android.synthetic.main.view_create_task.view.*
@@ -25,7 +25,7 @@ private const val MAX_TODO_COUNT = 5
 class CreateTaskFragment : Fragment() {
 
     @Inject
-    lateinit var model: TaskLocalModel
+    lateinit var model: ITaskModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

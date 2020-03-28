@@ -24,7 +24,7 @@ class TaskLocalModel @Inject constructor() : ITaskModel {
     )
 
     override fun addTask(task: Task, callback: SuccessCallback) {
-        Log.d("Udemy Course", task.toString())
+        Log.d("UdemyCourse", task.toString())
         callback.invoke(true)
     }
 
