@@ -12,6 +12,9 @@ const val DB_NAME = "local-db"
 @Database(version = DATABASE_SCHEMA_VERSION, entities = [TaskEntity::class, Todo::class, Tag::class, Note::class])
 abstract class RoomDatabaseClient : RoomDatabase() {
 
+    abstract fun noteDAO(): NoteDAO
+    abstract fun taskDAO(): TaskDAO
+
     companion object {
         private var instance: RoomDatabaseClient? = null
 
@@ -22,8 +25,9 @@ abstract class RoomDatabaseClient : RoomDatabase() {
             return instance!!
         }
 
+        // TODO: move away from main thread queries; (hint; solution is coroutines!)
         private fun createDatabase(context: Context): RoomDatabaseClient {
-            return Room.databaseBuilder(context, RoomDatabaseClient::class.java, DB_NAME).build()
+            return Room.databaseBuilder(context, RoomDatabaseClient::class.java, DB_NAME).allowMainThreadQueries().build()
         }
     }
 
