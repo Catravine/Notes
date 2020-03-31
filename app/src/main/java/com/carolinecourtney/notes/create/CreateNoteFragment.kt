@@ -40,7 +40,7 @@ class CreateNoteFragment : Fragment(), NullFieldChecker {
         } ?: callback.invoke(false)
     }
 
-    private fun createNote(): Note? = if (!hasNullField()) Note(note_edit_text.editableText.toString()) else null
+    private fun createNote(): Note? = if (!hasNullField()) Note(description = note_edit_text.editableText.toString()) else null
 
     interface OnFragmentInteractionListener {
         fun onFragmentInteraction()

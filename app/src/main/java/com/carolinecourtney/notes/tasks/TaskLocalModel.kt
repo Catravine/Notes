@@ -26,8 +26,6 @@ class TaskLocalModel @Inject constructor() : ITaskModel {
         callback.invoke(true)
     }
 
-    override fun retrieveTasks(): List<Task> {
-        databaseClient.taskDAO().retrieveTasks()
-    }
+    override fun retrieveTasks(): List<Task> = databaseClient.taskDAO().retrieveTasks()
 
 }

@@ -107,7 +107,7 @@ class CreateTaskFragment : Fragment() {
                     } else {
                         if (!container_view.getChildAt(i).todo_edit_text.editableText?.toString().isNullOrEmpty()) {
                             todoList.add(
-                                Todo(container_view.getChildAt(i).todo_edit_text.editableText.toString())
+                                Todo(description = container_view.getChildAt(i).todo_edit_text.editableText.toString())
                             )
                         }
                     }
